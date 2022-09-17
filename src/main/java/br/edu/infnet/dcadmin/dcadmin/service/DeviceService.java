@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.dcadmin.dcadmin.domain.Device;
+import br.edu.infnet.dcadmin.dcadmin.domain.dto.DeviceDTO;
 import br.edu.infnet.dcadmin.dcadmin.exceptions.DatabaseException;
 import br.edu.infnet.dcadmin.dcadmin.exceptions.ResourceNotFoundException;
 import br.edu.infnet.dcadmin.dcadmin.repository.DeviceRepository;
@@ -21,8 +22,9 @@ public class DeviceService {
 	@Autowired
 	private DeviceRepository deviceRepository;
 
-	public Device create(Device device) {
-		return deviceRepository.save(device);
+	public DeviceDTO create(Device device) {
+		var savedDevice = this.deviceRepository.save(device);
+		return savedDevice.obterDeviceDTO();
 	}
 
 	public List<Device> retrieve() {

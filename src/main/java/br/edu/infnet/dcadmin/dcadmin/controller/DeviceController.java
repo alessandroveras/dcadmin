@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.infnet.dcadmin.dcadmin.domain.Device;
+import br.edu.infnet.dcadmin.dcadmin.domain.dto.DeviceDTO;
 import br.edu.infnet.dcadmin.dcadmin.service.DeviceService;
 
 @RestController
@@ -26,8 +27,8 @@ public class DeviceController {
 	private DeviceService deviceService;
 
 	@PostMapping
-	public ResponseEntity<Device> create(@RequestBody Device device) {
-		Device createdDevice = deviceService.create(device);
+	public ResponseEntity<DeviceDTO> create(final @RequestBody Device device) {
+		DeviceDTO createdDevice = deviceService.create(device);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdDevice.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(createdDevice);

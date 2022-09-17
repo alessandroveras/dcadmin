@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.edu.infnet.dcadmin.dcadmin.domain.dto.DeviceDTO;
+
 @Entity
 @Table(name = "TDEVICE")
 public class Device implements Serializable {
@@ -34,6 +36,10 @@ public class Device implements Serializable {
 	public Device() {
 	}
 
+	public DeviceDTO obterDeviceDTO() {
+        return new DeviceDTO(this.id, this.serialNumber, this.hostname, this.type, this.role );
+    }
+	
 	public Long getId() {
 		return id;
 	}
